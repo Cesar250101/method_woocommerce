@@ -38,6 +38,10 @@ class Productos(models.Model):
             sku=pw['sku']
             id=pw['id']
             name=pw['name']
+            descripton_sale=pw['description']
+            list_price=pw['price']
+            type="product"
+            
                     
             productos_all=self.env['product.template'].search([('default_code', '=', sku)],limit=1)
             if productos_all:
@@ -52,3 +56,18 @@ class Productos(models.Model):
                     }
                 #wcapi.put("products/attributes/"+str(id), data).json()
                 wcapi.put("products/"+str(id), data).json()
+                values = {
+                            "name": name,
+                            "lst_price": list_price,
+                            "descripton_sale":descripton_sale,
+                        }                
+                self.write(values)
+            else:
+                values = {
+                            "default_code": sku,
+                            "name": name,
+                            "lst_price": list_price,
+                            "descripton_sale":descripton_sale,
+                            "type":type,
+                        }
+                self.create(values)
