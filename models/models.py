@@ -69,5 +69,6 @@ class Productos(models.Model):
                             "lst_price": list_price,
                             "descripton_sale":descripton_sale,
                             "type":type,
+                            "available_in_pos":True,
                         }
                 self.create(values)
