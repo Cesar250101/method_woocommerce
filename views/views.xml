@@ -1,60 +1,16 @@
 <odoo>
   <data>
-    <!-- explicit list view definition -->
-    <!--
-    <record model="ir.ui.view" id="method_woocommerce.list">
-      <field name="name">method_woocommerce list</field>
-      <field name="model">method_woocommerce.method_woocommerce</field>
+    <!-- model.name inherit form view -->
+    <record id="method_woocommerce.view_partner_form" model="ir.ui.view">
+      <field name="name">method.woocommerce.view.partner.form</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_form"/>
       <field name="arch" type="xml">
-        <tree>
-          <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
-        </tree>
+        <xpath expr="//field[@name='lang']" position="after">
+          <button name="sync_partner" type="object" string="Obtener Clientes" class="btn-sm btn-link mb4 fa fa-envelope-o"/>
+        </xpath>
+        
       </field>
     </record>
-    -->
-
-    <!-- actions opening views on models -->
-    <!--
-    <record model="ir.actions.act_window" id="method_woocommerce.action_window">
-      <field name="name">method_woocommerce window</field>
-      <field name="res_model">method_woocommerce.method_woocommerce</field>
-      <field name="view_mode">tree,form</field>
-    </record>
-    -->
-
-    <!-- server action to the one above -->
-    <!--
-    <record model="ir.actions.server" id="method_woocommerce.action_server">
-      <field name="name">method_woocommerce server</field>
-      <field name="model_id" ref="model_method_woocommerce_method_woocommerce"/>
-      <field name="state">code</field>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": self._name,
-        }
-      </field>
-    </record>
-    -->
-
-    <!-- Top menu item -->
-    <!--
-    <menuitem name="method_woocommerce" id="method_woocommerce.menu_root"/>
-    -->
-    <!-- menu categories -->
-    <!--
-    <menuitem name="Menu 1" id="method_woocommerce.menu_1" parent="method_woocommerce.menu_root"/>
-    <menuitem name="Menu 2" id="method_woocommerce.menu_2" parent="method_woocommerce.menu_root"/>
-    -->
-    <!-- actions -->
-    <!--
-    <menuitem name="List" id="method_woocommerce.menu_1_list" parent="method_woocommerce.menu_1"
-              action="method_woocommerce.action_window"/>
-    <menuitem name="Server to list" id="method_woocommerce" parent="method_woocommerce.menu_2"
-              action="method_woocommerce.action_server"/>
-    -->
   </data>
 </odoo>
