@@ -128,7 +128,7 @@ class Productos(models.Model):
         #           onbackorder. 
         #         
         # Default is instock.
-        productos_woo = wcapi.get('products', params={'per_page': 100}).json()
+        productos_woo = wcapi.get('products', params={'per_page': 200}).json()
         
         for pw in productos_woo:
             sku=pw['sku']
