@@ -142,13 +142,15 @@ class Productos(models.Model):
             productos_all=self.env['product.template'].search([('default_code', '=', sku)],limit=1)
             if productos_all:
                 stock=productos_all.qty_available
+                precio=productos_all.list_price
                 if productos_all.qty_available<=0:
                     stock_status="outofstock"
                 else:
                     stock_status="instock"
                 data = {
                     'stock_quantity': stock,
-                    'stock_status': stock_status
+                    'stock_status': stock_status,
+                    'price':precio
                     }
                 #wcapi.put("products/attributes/"+str(id), data).json()
                 wcapi.put("products/"+str(id), data).json()
